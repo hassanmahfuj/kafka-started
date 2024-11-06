@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: kafka-started
+  kafka:
+    bootstrap-servers: 192.168.0.10:29092

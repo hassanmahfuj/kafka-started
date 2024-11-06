@@ -4,10 +4,10 @@ import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.TopicBuilder;
 
-@Configuration
+//@Configuration
 public class KafkaTopicConfig {
 
-    public NewTopic helloTopic() {
-        return TopicBuilder.name("hello").build();
-    }
+//    public NewTopic helloTopic() {
+//        return TopicBuilder.name("hello").build();
+//    }
 }

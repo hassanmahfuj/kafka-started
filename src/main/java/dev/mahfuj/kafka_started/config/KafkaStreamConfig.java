@@ -1,11 +1,6 @@
 package dev.mahfuj.kafka_started.config;
 
 import org.apache.kafka.common.serialization.Serdes;
-import org.apache.kafka.streams.KafkaStreams;
-import org.apache.kafka.streams.StreamsBuilder;
-import org.apache.kafka.streams.kstream.Consumed;
-import org.apache.kafka.streams.kstream.KStream;
-import org.apache.kafka.streams.kstream.Produced;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,18 +29,4 @@ public class KafkaStreamConfig {
         props.put(DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
         return new KafkaStreamsConfiguration(props);
     }
-
-    @Bean
-    public KafkaStreams kafkaStreams(KafkaStreamsConfiguration streamsConfiguration) {
-        StreamsBuilder streamsBuilder = new StreamsBuilder();
-        // Define the Kafka Streams topology here
-        KStream<String, String> stream = streamsBuilder.stream("task", Consumed.with(Serdes.String(), Serdes.String()));
-
-        // Process the stream
-        stream.mapValues(task -> task + "-hum").to("task-completed", Produced.with(Serdes.String(), Serdes.String()));
-
-        // Create KafkaStreams instance
-        return new KafkaStreams(streamsBuilder.build(), streamsConfiguration.asProperties());
-    }
-
 }

@@ -1,7 +1,6 @@
 package dev.mahfuj.kafka_started.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.mahfuj.kafka_started.domain.AsyncProcess;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;

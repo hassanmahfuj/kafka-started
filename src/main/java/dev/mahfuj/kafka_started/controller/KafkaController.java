@@ -4,7 +4,10 @@ import dev.mahfuj.kafka_started.domain.AsyncProcess;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/kafka")
@@ -29,7 +32,7 @@ public class KafkaController {
     public ResponseEntity<?> result(@RequestBody AsyncProcess process) {
         process.convertToTasks().forEach(task -> {
             task.setTotal((long) process.getTasks().size());
-            kafkaTemplate.send("task-result1", process.getId().toString(), task);
+            kafkaTemplate.send("task-result", process.getId().toString(), task);
         });
         return ResponseEntity.accepted().build();
     }

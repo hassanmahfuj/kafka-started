@@ -1,14 +1,42 @@
 package dev.mahfuj.kafka_started.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@JsonPropertyOrder({
+        "processId",
+        "name",
+        "moduleName",
+        "domainType",
+        "task",
+        "status",
+        "total",
+        "count"
+})
 public class AsyncProcessTask {
 
+    @JsonProperty("processId")
     private Long processId;
+
+    @JsonProperty("name")
     private String name;
+
+    @JsonProperty("moduleName")
     private String moduleName;
+
+    @JsonProperty("domainType")
     private String domainType;
+
+    @JsonProperty("task")
     private String task;
+
+    @JsonProperty("status")
     private String status;
+
+    @JsonProperty("total")
     private Long total;
+
+    @JsonProperty("count")
     private Long count;
 
     public Long getProcessId() {

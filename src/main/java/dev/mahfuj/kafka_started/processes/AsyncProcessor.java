@@ -6,6 +6,8 @@ import dev.mahfuj.kafka_started.domain.AsyncProcessTask;
 import dev.mahfuj.kafka_started.processes.domain.RateChange;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+
 @Service
 public class AsyncProcessor {
 
@@ -20,7 +22,7 @@ public class AsyncProcessor {
             Class<?> clazz = Class.forName(task.getDomainType());
             Object obj = objectMapper.readValue(task.getTask(), clazz);
             execute((RateChange) obj);
-        } catch (ClassNotFoundException | JsonProcessingException e) {
+        } catch (ClassNotFoundException | IOException e) {
             throw new RuntimeException(e);
         }
     }

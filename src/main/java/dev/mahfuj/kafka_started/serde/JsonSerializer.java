@@ -10,7 +10,6 @@ public class JsonSerializer<T> implements Serializer<T> {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     public JsonSerializer() {
-
     }
 
     @Override

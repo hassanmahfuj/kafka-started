@@ -32,7 +32,7 @@ public class KafkaController {
     public ResponseEntity<?> result(@RequestBody AsyncProcess process) {
         process.convertToTasks().forEach(task -> {
             task.setTotal((long) process.getTasks().size());
-            kafkaTemplate.send("task-result", process.getId().toString(), task);
+            kafkaTemplate.send("task-result", process.getId().toString(), task.getName());
         });
         return ResponseEntity.accepted().build();
     }

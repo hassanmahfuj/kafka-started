@@ -1,4 +1,4 @@
-package dev.mahfuj.kafka_started.config;
+package dev.mahfuj.kafka_started.serde;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.common.errors.SerializationException;

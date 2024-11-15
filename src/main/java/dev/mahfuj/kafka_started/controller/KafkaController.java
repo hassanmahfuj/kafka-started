@@ -30,7 +30,7 @@ public class KafkaController {
     @PostMapping(value = "/task-result", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> result(@RequestBody AsyncProcess process) {
         process.convertToTasks().forEach(task -> {
-            kafkaTemplate.send("task-result", process.getId().toString(), task.getName());
+            kafkaTemplate.send("task-result", process.getId().toString(), task);
         });
         return ResponseEntity.accepted().build();
     }

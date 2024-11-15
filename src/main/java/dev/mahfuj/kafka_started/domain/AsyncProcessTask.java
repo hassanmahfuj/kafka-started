@@ -8,10 +8,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "name",
         "moduleName",
         "domainType",
-        "task",
-        "status",
-        "total",
-        "count"
+        "taskId",
+        "domainData",
+        "status"
 })
 public class AsyncProcessTask {
 
@@ -27,17 +26,14 @@ public class AsyncProcessTask {
     @JsonProperty("domainType")
     private String domainType;
 
-    @JsonProperty("task")
-    private String task;
+    @JsonProperty("taskId")
+    private Long taskId;
+
+    @JsonProperty("domainData")
+    private String domainData;
 
     @JsonProperty("status")
     private String status;
-
-    @JsonProperty("total")
-    private Long total;
-
-    @JsonProperty("count")
-    private Long count;
 
     public Long getProcessId() {
         return processId;
@@ -75,12 +71,21 @@ public class AsyncProcessTask {
         return this;
     }
 
-    public String getTask() {
-        return task;
+    public Long getTaskId() {
+        return taskId;
     }
 
-    public AsyncProcessTask setTask(String task) {
-        this.task = task;
+    public AsyncProcessTask setTaskId(Long taskId) {
+        this.taskId = taskId;
+        return this;
+    }
+
+    public String getDomainData() {
+        return domainData;
+    }
+
+    public AsyncProcessTask setDomainData(String domainData) {
+        this.domainData = domainData;
         return this;
     }
 
@@ -93,24 +98,6 @@ public class AsyncProcessTask {
         return this;
     }
 
-    public Long getTotal() {
-        return total;
-    }
-
-    public AsyncProcessTask setTotal(Long total) {
-        this.total = total;
-        return this;
-    }
-
-    public Long getCount() {
-        return count;
-    }
-
-    public AsyncProcessTask setCount(Long count) {
-        this.count = count;
-        return this;
-    }
-
     @Override
     public String toString() {
         return "AsyncProcessTask{" +
@@ -118,10 +105,9 @@ public class AsyncProcessTask {
                 ", name='" + name + '\'' +
                 ", moduleName='" + moduleName + '\'' +
                 ", domainType='" + domainType + '\'' +
-                ", task='" + task + '\'' +
+                ", taskId=" + taskId +
+                ", domainData='" + domainData + '\'' +
                 ", status='" + status + '\'' +
-                ", total=" + total +
-                ", count=" + count +
                 '}';
     }
 }

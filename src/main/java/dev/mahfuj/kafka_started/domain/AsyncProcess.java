@@ -9,7 +9,7 @@ public class AsyncProcess {
     private String name;
     private String moduleName;
     private String domainType;
-    private List<String> tasks;
+    private List<AsyncTask> tasks;
 
     public Long getId() {
         return id;
@@ -47,13 +47,12 @@ public class AsyncProcess {
         return this;
     }
 
-    public List<String> getTasks() {
+    public List<AsyncTask> getTasks() {
         return tasks;
     }
 
-    public AsyncProcess setTasks(List<String> tasks) {
+    public void setTasks(List<AsyncTask> tasks) {
         this.tasks = tasks;
-        return this;
     }
 
     public List<AsyncProcessTask> convertToTasks() {
@@ -63,7 +62,9 @@ public class AsyncProcess {
                         .setName(this.name)
                         .setModuleName(this.moduleName)
                         .setDomainType(this.domainType)
-                        .setTask(task))
+                        .setTaskId(task.getId())
+                        .setDomainData(task.getDomainData())
+                        .setStatus("Ready"))
                 .collect(Collectors.toList());
     }
 

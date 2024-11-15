@@ -22,7 +22,6 @@ public class KafkaController {
     @PostMapping(value = "/task-executor", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> task(@RequestBody AsyncProcess process) {
         process.convertToTasks().forEach(task -> {
-            task.setTotal((long) process.getTasks().size());
             kafkaTemplate.send("task-executor", process.getId().toString(), task);
         });
         return ResponseEntity.accepted().build();
@@ -31,7 +30,6 @@ public class KafkaController {
     @PostMapping(value = "/task-result", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> result(@RequestBody AsyncProcess process) {
         process.convertToTasks().forEach(task -> {
-            task.setTotal((long) process.getTasks().size());
             kafkaTemplate.send("task-result", process.getId().toString(), task.getName());
         });
         return ResponseEntity.accepted().build();
